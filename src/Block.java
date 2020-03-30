@@ -109,4 +109,22 @@ public class Block {
         }
 
     }
+
+
+    /**
+     * This method check neutrality of this block
+     *
+     * @return true, if be neutral and false, if don't be neutral
+     */
+    public boolean isNeutral() {
+
+        for (int[] ints : block) {
+            for (int i : ints) {
+                if(i != 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
