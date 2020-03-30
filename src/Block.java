@@ -72,4 +72,41 @@ public class Block {
 
         this.block = fakeArray;
     }
+
+
+    /**
+     * This method check a cell is empty or not
+     *
+     * @param x x position of cell
+     * @param y y position of cell
+     * @return true if this cell be empty and false if
+     * this cell be full
+     */
+    public boolean isEmpty(int x, int y) {
+
+        if(this.block[x][y] == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * This method full a cell with number of its color
+     * color must be 1 or 2
+     *
+     * @param color color of marble that determine player
+     * @param x x position of cell
+     * @param y y position of cell
+     */
+    public void addMarble(int color, int x, int y) {
+
+        if(isEmpty(x, y)) {
+
+            this.getBlock()[x][y] = color;
+
+        } else {
+            System.out.println("This cell is full!!!");
+        }
+
+    }
 }
