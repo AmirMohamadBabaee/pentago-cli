@@ -18,6 +18,7 @@ public class Block {
 
     // Constructor
 
+    // TODO: add java doc for this constructor
     public Block() {
 
         this.block = new int[3][3];
