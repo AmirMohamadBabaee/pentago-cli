@@ -1,5 +1,8 @@
 import jdk.nashorn.internal.objects.annotations.Constructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Table
  *
@@ -14,14 +17,8 @@ public class Table {
 
     // Fields
 
-    // First block
-    private Block block1;
-    // Second block
-    private Block block2;
-    // Third block
-    private Block block3;
-    // Fourth block
-    private Block block4;
+    // List of block in this table
+    List<Block> block;
     // whole table of this game
     private int[][] map;
 
@@ -31,11 +28,13 @@ public class Table {
     // TODO: add java doc for this constructor
     public Table() {
 
-        this.block1 = new Block();
-        this.block2 = new Block();
-        this.block3 = new Block();
-        this.block4 = new Block();
+        block = new ArrayList<>();
+        block.add(new Block());
+        block.add(new Block());
+        block.add(new Block());
+        block.add(new Block());
         this.map = new int[6][6];
+
     }
 
 
@@ -63,17 +62,17 @@ public class Table {
                 if(i<3) {
 
                     if(j<3) {
-                        this.map[i][j] = block1.getBlock()[i][j];
+                        this.map[i][j] = block.get(0).getBlock()[i][j];
                     } else {
-                        this.map[i][j] = block2.getBlock()[i][j-3];
+                        this.map[i][j] = block.get(2).getBlock()[i][j-3];
                     }
 
                 } else {
 
                     if(j<3) {
-                        this.map[i][j] = block3.getBlock()[i-3][j];
+                        this.map[i][j] = block.get(3).getBlock()[i-3][j];
                     } else {
-                        this.map[i][j] = block4.getBlock()[i-3][j-3];
+                        this.map[i][j] = block.get(4).getBlock()[i-3][j-3];
                     }
 
                 }
@@ -99,11 +98,11 @@ public class Table {
 
                 if(mapY < 3) { // first block (1)
 
-                    block1.addMarble(color, mapX, mapY);
+                    block.get(1).addMarble(color, mapX, mapY);
 
                 } else { // second block (2)
 
-                    block2.addMarble(color, mapX, mapY-3);
+                    block.get(2).addMarble(color, mapX, mapY-3);
 
                 }
 
@@ -111,11 +110,11 @@ public class Table {
 
                 if(mapY < 3) { // third block (3)
 
-                    block3.addMarble(color, mapX-3, mapY);
+                    block.get(3).addMarble(color, mapX-3, mapY);
 
                 } else { // forth block (4)
 
-                    block4.addMarble(color, mapX, mapY);
+                    block.get(4).addMarble(color, mapX, mapY);
 
                 }
 
@@ -128,5 +127,5 @@ public class Table {
     }
 
 
-    public 
+    
 }
