@@ -1,5 +1,3 @@
-import jdk.nashorn.internal.objects.annotations.Constructor;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +52,7 @@ public class Table {
     /**
      * this method combine 4 block in this table map
      */
-    public void makeMap() {
+    private void makeMap() {
 
         for(int i=0 ; i<6 ; i++) {
             for(int j=0 ; j<6 ; j++) {
@@ -119,7 +117,8 @@ public class Table {
                 }
 
             }
-
+            // call make map to refresh map 2D array
+            makeMap();
         } else {
             System.out.println("entered index is not correct!!!");
         }
@@ -127,5 +126,30 @@ public class Table {
     }
 
 
-    
+    /**
+     * this method take block number and kind of rotate
+     * then rotate that block.
+     *
+     * @param blockNumber number of block in list of Block object
+     * @param type clockwise = 0 or counter clockwise = 1
+     */
+    public void rotateBlock(int blockNumber, int type) {
+
+        try{
+
+            block.get(blockNumber).rotateBlock(type);
+            makeMap();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    // TODO: check this method is useful or not (refreshMap)
+    public void refreshMap() {
+
+        makeMap();
+
+    }
 }
