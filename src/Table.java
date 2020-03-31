@@ -16,7 +16,7 @@ public class Table {
     // Fields
 
     // List of block in this table
-    List<Block> block;
+    private List<Block> block;
     // whole table of this game
     private int[][] map;
 
