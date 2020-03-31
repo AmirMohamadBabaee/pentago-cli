@@ -19,6 +19,8 @@ public class Table {
     private List<Block> block;
     // whole table of this game
     private int[][] map;
+    // counter of marble method
+    static int counter = 0;
 
 
     // Constructor
@@ -62,15 +64,15 @@ public class Table {
                     if(j<3) {
                         this.map[i][j] = block.get(0).getBlock()[i][j];
                     } else {
-                        this.map[i][j] = block.get(2).getBlock()[i][j-3];
+                        this.map[i][j] = block.get(1).getBlock()[i][j-3];
                     }
 
                 } else {
 
                     if(j<3) {
-                        this.map[i][j] = block.get(3).getBlock()[i-3][j];
+                        this.map[i][j] = block.get(2).getBlock()[i-3][j];
                     } else {
-                        this.map[i][j] = block.get(4).getBlock()[i-3][j-3];
+                        this.map[i][j] = block.get(3).getBlock()[i-3][j-3];
                     }
 
                 }
@@ -88,7 +90,7 @@ public class Table {
      * @param mapX x position in map 2D array
      * @param mapY y position in map 2D array
      */
-    private void indexConverter(int color ,int mapX, int mapY) {
+    public void indexConverter(int color ,int mapX, int mapY) {
 
         if(mapX >= 0 && mapX < 6 && mapY >= 0 && mapY < 6) {
 
@@ -96,11 +98,11 @@ public class Table {
 
                 if(mapY < 3) { // first block (1)
 
-                    block.get(1).addMarble(color, mapX, mapY);
+                    block.get(0).addMarble(color, mapX, mapY);
 
                 } else { // second block (2)
 
-                    block.get(2).addMarble(color, mapX, mapY-3);
+                    block.get(1).addMarble(color, mapX, mapY-3);
 
                 }
 
@@ -108,11 +110,11 @@ public class Table {
 
                 if(mapY < 3) { // third block (3)
 
-                    block.get(3).addMarble(color, mapX-3, mapY);
+                    block.get(2).addMarble(color, mapX-3, mapY);
 
                 } else { // forth block (4)
 
-                    block.get(4).addMarble(color, mapX, mapY);
+                    block.get(3).addMarble(color, mapX-3, mapY-3);
 
                 }
 
@@ -151,5 +153,92 @@ public class Table {
 
         makeMap();
 
+    }
+
+
+    public void draw() {
+
+        String sol = "\u1690";
+
+        String horLine = "\u2500";
+        String verLine = "\u2502";
+
+        String up_left = "\u256D";
+        String up_right = "\u256E";
+        String down_left = "\u2570";
+        String down_right = "\u256F";
+
+        String horMain = "\u2550";
+        String verMain = "\u2551";
+        String left = "\u255E";
+        String right = "\u2561";
+        String up = "\u2565";
+        String down = "\u2568";
+        String cross = "\u256C";
+
+        System.out.print(up_left+horLine+horLine+horLine+horLine+sol+horLine+horLine+horLine+horLine+up_right+" ");
+        System.out.println(up+" "+up_left+horLine+horLine+horLine+horLine+sol+horLine+horLine+horLine+horLine+up_right);
+        System.out.print(verLine+" "+marble()+" "+marble()+" "+marble()+" "+verLine+" ");
+        System.out.println(verMain+" "+verLine+" "+marble()+" "+marble()+" "+marble()+" "+verLine);
+        System.out.print(verLine+" "+marble()+" "+marble()+" "+marble()+" "+verLine+" ");
+        System.out.println(verMain+" "+verLine+" "+marble()+" "+marble()+" "+marble()+" "+verLine);
+        System.out.print(verLine+" "+marble()+" "+marble()+" "+marble()+" "+verLine+" ");
+        System.out.println(verMain+" "+verLine+" "+marble()+" "+marble()+" "+marble()+" "+verLine);
+        System.out.print(down_left+horLine+horLine+horLine+horLine+sol+horLine+horLine+horLine+horLine+down_right+" ");
+        System.out.println(verMain+" "+down_left+horLine+horLine+horLine+horLine+sol+horLine+horLine+horLine+horLine+down_right);
+
+        System.out.print(left+horMain+horMain+horMain+horMain+horMain+sol+horMain+horMain+horMain+horMain+horMain+cross);
+        System.out.println(horMain+horMain+horMain+horMain+horMain+sol+horMain+horMain+horMain+horMain+horMain+right);
+
+        System.out.print(up_left+horLine+horLine+horLine+horLine+sol+horLine+horLine+horLine+horLine+up_right+" ");
+        System.out.println(verMain+" "+up_left+horLine+horLine+horLine+horLine+sol+horLine+horLine+horLine+horLine+up_right);
+        System.out.print(verLine+" "+marble()+" "+marble()+" "+marble()+" "+verLine+" ");
+        System.out.println(verMain+" "+verLine+" "+marble()+" "+marble()+" "+marble()+" "+verLine);
+        System.out.print(verLine+" "+marble()+" "+marble()+" "+marble()+" "+verLine+" ");
+        System.out.println(verMain+" "+verLine+" "+marble()+" "+marble()+" "+marble()+" "+verLine);
+        System.out.print(verLine+" "+marble()+" "+marble()+" "+marble()+" "+verLine+" ");
+        System.out.println(verMain+" "+verLine+" "+marble()+" "+marble()+" "+marble()+" "+verLine);
+        System.out.print(down_left+horLine+horLine+horLine+horLine+sol+horLine+horLine+horLine+horLine+down_right+" ");
+        System.out.println(down+" "+down_left+horLine+horLine+horLine+horLine+sol+horLine+horLine+horLine+horLine+down_right);
+
+    }
+
+
+    private String marble() {
+
+        String res = "";
+        String gen = "\u25CC";
+        String marble1 = "\u25CF";
+        String marble2 = "\u25CB";
+
+        if(counter < 36) {
+
+            int x = counter/6;
+            int y = counter%6;
+
+            if( getMap()[x][y] == 0) {
+
+                counter++;
+                return gen;
+
+            } else if(getMap()[x][y] == 1) {
+
+                counter++;
+                return marble1;
+
+            } else if(getMap()[x][y] == 2) {
+
+                counter++;
+                return marble2;
+
+            }
+
+        } else {
+
+            counter %= 36;
+            res = marble();
+
+        }
+        return res;
     }
 }
