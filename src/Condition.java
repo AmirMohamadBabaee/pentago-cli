@@ -29,6 +29,19 @@ public class Condition {
 
 
     /**
+     * This method check end of game and its for condition
+     * of while in Main class
+     *
+     * @return true if game ended and false if game is running
+     */
+    public boolean isEndGame() {
+
+        return isEnd(1) || isEnd(2);
+
+    }
+
+
+    /**
      * This method check there is any 5 marble in a row or not
      *
      * @param color color of marble
