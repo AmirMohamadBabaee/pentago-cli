@@ -34,7 +34,12 @@ public class Main {
                 try{
                     System.out.println("please enter index of expected cell");
                     System.out.print("Player 1 >>> ");
-                    table.indexConverter(1, scan.nextInt(), scan.nextInt());
+
+                    if(!table.indexConverter(1, scan.nextInt(), scan.nextInt())){
+
+                        continue;
+
+                    }
 
                     table.draw();
 
@@ -52,24 +57,7 @@ public class Main {
 
                         table.rotateBlock(block, type);
 
-                        // this part check end of this game
-
-                        if(condition.isEnd(1) && condition.isEnd(2)) {
-
-                            table.draw();
-                            System.out.println("It's Draw!!!");
-
-                        } else if(condition.isEnd(1) && !condition.isEnd(2)) {
-
-                            table.draw();
-                            System.out.println("Player 1 won!!!");
-
-                        } else if(!condition.isEnd(1) && condition.isEnd(2)) {
-
-                            table.draw();
-                            System.out.println("Player 2 won!!!");
-
-                        }
+                        condition.checkGame();
 
                     }
                 } catch(Exception e) {
@@ -81,7 +69,12 @@ public class Main {
                 try{
                     System.out.println("please enter index of expected cell");
                     System.out.print("Player 2 >>> ");
-                    table.indexConverter(2, scan.nextInt(), scan.nextInt());
+
+                    if(!table.indexConverter(2, scan.nextInt(), scan.nextInt())) {
+
+                        continue;
+
+                    }
 
                     table.draw();
 
@@ -99,22 +92,7 @@ public class Main {
 
                         table.rotateBlock(block, type);
 
-                        if(condition.isEnd(1) && condition.isEnd(2)) {
-
-                            table.draw();
-                            System.out.println("It's Draw!!!");
-
-                        } else if(condition.isEnd(1) && !condition.isEnd(2)) {
-
-                            table.draw();
-                            System.out.println("Player 1 won!!!");
-
-                        } else if(!condition.isEnd(1) && condition.isEnd(2)) {
-
-                            table.draw();
-                            System.out.println("Player 2 won!!!");
-
-                        }
+                        condition.checkGame();
 
                     }
                 } catch(Exception e) {

@@ -98,16 +98,19 @@ public class Block {
      * @param color color of marble that determine player
      * @param x x position of cell
      * @param y y position of cell
+     * @return if all of things done, true else false
      */
-    public void addMarble(int color, int x, int y) {
+    public boolean addMarble(int color, int x, int y) {
 
         if(isEmpty(x, y)) {
 
             this.getBlock()[x][y] = color;
+            return true;
 
         } else {
             System.out.println("This cell is full!!!");
         }
+        return false;
 
     }
 

@@ -112,4 +112,27 @@ public class Condition {
         }
         return false;
     }
+
+
+
+    public void checkGame() {
+
+        if(isEnd(1) && isEnd(2)) {
+
+            table.draw();
+            System.out.println("It's Draw!!!");
+
+        } else if(isEnd(1) && !isEnd(2)) {
+
+            table.draw();
+            System.out.println("Player 1 won!!!");
+
+        } else if(!isEnd(1) && isEnd(2)) {
+
+            table.draw();
+            System.out.println("Player 2 won!!!");
+
+        }
+
+    }
 }

@@ -11,7 +11,7 @@ import java.util.List;
  * @author Amir01
  * @version v1.0 (30 Mar 2020)
  */
-public class Table {
+public class Table implements Drawable{
 
     // Fields
 
@@ -89,8 +89,11 @@ public class Table {
      * @param color color of marble
      * @param mapX x position in map 2D array
      * @param mapY y position in map 2D array
+     * @return if all of things done, true else false
      */
-    public void indexConverter(int color ,int mapX, int mapY) {
+    public boolean indexConverter(int color ,int mapX, int mapY) {
+
+        boolean state = false;
 
         if(mapX >= 0 && mapX < 6 && mapY >= 0 && mapY < 6) {
 
@@ -98,11 +101,11 @@ public class Table {
 
                 if(mapY < 3) { // first block (1)
 
-                    block.get(0).addMarble(color, mapX, mapY);
+                    state = block.get(0).addMarble(color, mapX, mapY);
 
                 } else { // second block (2)
 
-                    block.get(1).addMarble(color, mapX, mapY-3);
+                    state = block.get(1).addMarble(color, mapX, mapY-3);
 
                 }
 
@@ -110,11 +113,11 @@ public class Table {
 
                 if(mapY < 3) { // third block (3)
 
-                    block.get(2).addMarble(color, mapX-3, mapY);
+                    state = block.get(2).addMarble(color, mapX-3, mapY);
 
                 } else { // forth block (4)
 
-                    block.get(3).addMarble(color, mapX-3, mapY-3);
+                    state = block.get(3).addMarble(color, mapX-3, mapY-3);
 
                 }
 
@@ -123,7 +126,9 @@ public class Table {
             makeMap();
         } else {
             System.out.println("entered index is not correct!!!");
+            state = false;
         }
+        return state;
 
     }
 
@@ -156,6 +161,7 @@ public class Table {
     }
 
 
+    @Override
     public void draw() {
 
         String sol = "\u1690";
