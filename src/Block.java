@@ -120,7 +120,7 @@ public class Block {
      *
      * @return true, if be neutral and false, if don't be neutral
      */
-    public boolean isNeutral() {
+    private boolean isNeutral() {
 
         for (int[] ints : block) {
             for (int i : ints) {
@@ -130,5 +130,56 @@ public class Block {
             }
         }
         return true;
+    }
+
+    /**
+     * this method check is a block symmetrical or not
+     *
+     * @return if it is symmetrical, true else false
+     */
+    private boolean isSymmetrical() {
+
+        int cornerValue = this.block[0][0];
+        int middleValue = this.block[0][1];
+
+        boolean condition1 = cornerValue == this.block[0][2];
+        boolean condition2 = cornerValue == this.block[2][0];
+        boolean condition3 = cornerValue == this.block[2][2];
+
+        if(condition1 && condition2 && condition3) {
+
+            condition1 = middleValue == this.block[1][0];
+            condition2 = middleValue == this.block[1][2];
+            condition3 = middleValue == this.block[2][1];
+
+            if(condition1 && condition2 && condition3) {
+                return true;
+            }
+
+        }
+
+        return false;
+    }
+
+    /**
+     * this method check can a block ignore
+     * rotation or not
+     *
+     * @return if it can ignore, true else false
+     */
+    public boolean canIgnore() {
+
+        if(isNeutral()) {
+
+            return true;
+
+        } else {
+
+            if(isSymmetrical()) {
+                return true;
+            }
+
+        }
+        return false;
     }
 }

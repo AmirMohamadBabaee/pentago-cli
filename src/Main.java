@@ -49,15 +49,23 @@ public class Main {
 
                     } else {
 
-                        System.out.print("Please choose your expected block >>> ");
-                        int block = scan.nextInt()-1;
-                        System.out.println("Please determine type of rotating (0 for clockwise & 1 for counter clockwise)");
-                        System.out.print("Enter Here >>> ");
-                        int type = scan.nextInt();
+                        if(table.isIgnoreValid()) {
 
-                        table.rotateBlock(block, type);
+                            System.out.println("Skipping rotation!!!");
 
-                        condition.checkGame();
+                        } else {
+
+                            System.out.print("Please choose your expected block >>> ");
+                            int block = scan.nextInt()-1;
+                            System.out.println("Please determine type of rotating (0 for clockwise & 1 for counter clockwise)");
+                            System.out.print("Enter Here >>> ");
+                            int type = scan.nextInt();
+
+                            table.rotateBlock(block, type);
+
+                            condition.checkGame();
+
+                        }
 
                     }
                 } catch(Exception e) {
@@ -84,15 +92,23 @@ public class Main {
 
                     } else {
 
-                        System.out.print("Please choose your expected block >>> ");
-                        int block = scan.nextInt()-1;
-                        System.out.println("Please determine type of rotating (0 for clockwise & 1 for counter clockwise)");
-                        System.out.print("Enter Here >>> ");
-                        int type = scan.nextInt();
+                        if(table.isIgnoreValid()) {
 
-                        table.rotateBlock(block, type);
+                            System.out.println("Skipping rotation!!!");
 
-                        condition.checkGame();
+                        } else {
+
+                            System.out.print("Please choose your expected block >>> ");
+                            int block = scan.nextInt()-1;
+                            System.out.println("Please determine type of rotating (0 for clockwise & 1 for counter clockwise)");
+                            System.out.print("Enter Here >>> ");
+                            int type = scan.nextInt();
+
+                            table.rotateBlock(block, type);
+
+                            condition.checkGame();
+
+                        }
 
                     }
                 } catch(Exception e) {

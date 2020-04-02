@@ -153,6 +153,15 @@ public class Table implements Drawable{
 
     }
 
+
+    public boolean isIgnoreValid() {
+
+        return block.get(0).canIgnore() && block.get(1).canIgnore() &&
+                block.get(2).canIgnore() && block.get(3).canIgnore();
+
+    }
+
+
     // TODO: check this method is useful or not (refreshMap)
     public void refreshMap() {
 
