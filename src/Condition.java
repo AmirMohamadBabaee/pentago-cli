@@ -12,7 +12,7 @@ public class Condition {
     // Fields
 
     // objects of Table class
-    Table table;
+    private Table table;
 
 
     // Constructor
