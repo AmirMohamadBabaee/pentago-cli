@@ -49,6 +49,16 @@ public class Table implements Drawable, Cloneable{
         return map;
     }
 
+
+    /**
+     * setter of map 2D array in 6*6
+     *
+     * @param map 2D array called map
+     */
+    public void setMap(int[][] map) {
+        this.map = map;
+    }
+
     // Method
 
     /**
@@ -262,7 +272,24 @@ public class Table implements Drawable, Cloneable{
 
         try {
 
-            return (Table) super.clone();
+            Table cloneTable = (Table)super.clone();
+
+            cloneTable.block = new ArrayList<>();
+            cloneTable.block.add(this.block.get(0).getClone());
+            cloneTable.block.add(this.block.get(1).getClone());
+            cloneTable.block.add(this.block.get(2).getClone());
+            cloneTable.block.add(this.block.get(3).getClone());
+
+            int[][] fakeMap = new int[6][6];
+            for(int i = 0 ; i<6 ; i++) {
+                for(int j=0 ; j<6 ; j++) {
+                    fakeMap[i][j] = this.getMap()[i][j];
+                }
+            }
+
+            cloneTable.setMap(fakeMap);
+
+            return cloneTable;
 
         } catch(CloneNotSupportedException e) {
             e.getMessage();

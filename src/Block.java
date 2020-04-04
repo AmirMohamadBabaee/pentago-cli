@@ -8,7 +8,7 @@
  * @author Amir01
  * @version v1.0 (30 Mar 2020)
  */
-public class Block {
+public class Block implements Cloneable{
 
     // Fields
 
@@ -181,5 +181,23 @@ public class Block {
 
         }
         return false;
+    }
+
+
+    public Block getClone() throws CloneNotSupportedException{
+
+        Block block = (Block)super.clone();
+
+        int [][] blc = new int[3][3];
+        for(int i=0 ; i<3 ; i++) {
+            for(int j=0 ; j<3 ; j++) {
+                blc[i][j] = this.block[i][j];
+            }
+        }
+
+        block.block = blc;
+
+        return block;
+
     }
 }
