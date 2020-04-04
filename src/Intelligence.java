@@ -7,8 +7,9 @@
  * @author Amir01
  * @version v2.0 (2 Apr 2020)
  */
-@FunctionalInterface
+
 public interface Intelligence {
 
-    int[] findBestPos(Table T);
+    int[] findBestPos(Table table);
+
 }
