@@ -11,7 +11,7 @@ import java.util.List;
  * @author Amir01
  * @version v1.0 (30 Mar 2020)
  */
-public class Table implements Drawable{
+public class Table implements Drawable, Cloneable{
 
     // Fields
 
@@ -255,5 +255,20 @@ public class Table implements Drawable{
 
         }
         return res;
+    }
+
+
+    public Table getClone() {
+
+        try {
+
+            return (Table) super.clone();
+
+        } catch(CloneNotSupportedException e) {
+            e.getMessage();
+            System.err.println("Problem in cloning!!!");
+            return this;
+        }
+
     }
 }
