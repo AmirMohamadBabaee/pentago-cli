@@ -298,4 +298,18 @@ public class Table implements Drawable, Cloneable{
         }
 
     }
+
+
+    @Override
+    public String toString() {
+        String res = "";
+        for (int[] ints : getMap()) {
+            for (int i : ints) {
+                res += i + " ";
+            }
+            res += "\n";
+        }
+
+        return res;
+    }
 }
