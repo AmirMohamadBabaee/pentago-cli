@@ -1,5 +1,5 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Intel
@@ -15,7 +15,7 @@ public class Intel implements Intelligence{
     // Fields
 
     // map of priority of rotation
-    private Map <Integer, Integer> rotatePriority;
+    private List<Table> rotatePriority;
     // object of Table class
     private Table table;
     // a blue print of map
@@ -36,7 +36,7 @@ public class Intel implements Intelligence{
     // TODO: add javadoc for this default constructor
     public Intel(Table table) {
 
-        this.rotatePriority = new HashMap<>();
+        this.rotatePriority = new ArrayList<>();
         this.table = table;
         this.blueMap = new int[6][6];
 
@@ -77,8 +77,6 @@ public class Intel implements Intelligence{
 
         int [][] map = this.table.getMap();
 
-        boolean res = false;
-
         for(int i=0; i<6 ; i++) {
             for(int j=0 ; j<6 ; j++) {
 
@@ -98,15 +96,17 @@ public class Intel implements Intelligence{
 
                             if(color == 1) {
 
-                                if(counter == 4) {
+                                if(counter == 5) {
+
+                                    return true;
+
+                                } else if(counter == 4) {
 
                                     blueMap[x+delX][y+delY] = -4;
-                                    res = true;
 
                                 } else if(counter == 3) {
 
                                     blueMap[x+delX][y+delY] = -3;
-                                    res = true;
 
                                 } else {
 
@@ -116,15 +116,17 @@ public class Intel implements Intelligence{
 
                             } else if (color == 2) {
 
-                                if(counter == 4) {
+                                if(counter == 5) {
+
+                                    return false;
+
+                                } else if(counter == 4) {
 
                                     blueMap[x+delX][y+delY] = 4;
-                                    res = true;
 
                                 } else if(counter == 3) {
 
                                     blueMap[x+delX][y+delY] = 3;
-                                    res = true;
 
                                 } else {
 
@@ -143,15 +145,39 @@ public class Intel implements Intelligence{
 
                 } catch(Exception e) {
                     e.printStackTrace();
-                    return res;
+                    return true;
                 }
 
             }
 
         }
-        return res;
+        return true;
     }
 
 
+    private void checkRotation(int blocknumber, int rotateType) {
+
+        Table fakeTable = this.table.getClone();
+
+        fakeTable.rotateBlock(blocknumber, rotateType);
+
+        this.rotatePriority.add(fakeTable);
+
+    }
+
+
+
+    public void check() {
+
+        checkRotation(0, 0);
+        checkRotation(0, 1);
+        checkRotation(1, 0);
+        checkRotation(1, 1);
+        checkRotation(2, 0);
+        checkRotation(2, 1);
+        checkRotation(3, 0);
+        checkRotation(3, 1);
+
+    }
 
 }
